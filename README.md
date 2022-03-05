@@ -24,10 +24,12 @@ The first function, titled **buildTable** set up the table format, ensuring that
 
 Next I wrote a function called **updateFilters()**, which logged the users' selections as variables and prepared them for filtering. Using d3, I had a powerful shortcut to getting the code to respond to the user interactions on the web site. using `select(this)` I had the web site ready for what would come next, which would be the filtering. At the end of this function, I returned **filterTable()** which would be defined later in the code.
 
-My filtering function was called **filterTable()**, which matched the input in `Object.entries` with the key-value pairs that matched the requests. I dispensed with a list of filtering all of the input boxes on the form by using an `Object.entries(filters).forEach(([key,value] => { filteredData = filteredData.filter(row => row[key === value)});....' This let me use each of the filter entries to further hone the search. Another d3 call at the end of my code put my two functions in concert to provide the user with the desired results. Finally I used `buildTable(tableData)` to rebuild a table containing only the desired results.
+My filtering function was called **filterTable()**, which matched the input in `Object.entries` with the key-value pairs that matched the requests. I dispensed with a list of filtering all of the input boxes on the form by using an `Object.entries(filters).forEach(([key,value] => { filteredData = filteredData.filter(row => row[key === value)});....` This let me use each of the filter entries to further hone the search. Another d3 call at the end of my code put my two functions in concert to provide the user with the desired results. Finally I used `buildTable(tableData)` to rebuild a table containing only the desired results.
 
 This is what the filter looked like when I searched for Dana's home state of Oregon
 ![oregon_results](https://github.com/JDittes/UFOs/blob/main/static/css/images/results_table.png)
 
 ## Summary: 
-In a summary statement, describe one drawback of this new design and two recommendations for further development.
+In making multiple searches of the data, there are a few things we could do to make searching easier
+* The input should be filtered so that upper and lowercase words would count the same. For example, the states only take two lowercase letters to get a return, i.e. 'oh' for sightings in Ohio.  If the user enters 'OH' or 'Ohio' or 'oH', they get no results. I would add JavaScript code to make all entries lowercase.
+* Another item that would benefit the filter would be dropdown menus, particularly for the **Shape** input box. For example, the box accepts the word 'circle,' but would reject 'saucer' or 'round' because that information is not in the data set. Giving users a dropdown menu to look at possible options would allow for more specific and more successful searches.
