@@ -23,35 +23,45 @@ function buildTable(data) {
   });
 }
 
-// 1. Create a variable to keep track of all the filters as an object.
-let filters = {datetime: datetime,
-              city: city,
-              state: state,
-              country: country,
-              shape: shape};
+// 1. Create a variable to keep track of all the filters as an object. Curly brackets are the objects
+var filters = {};
 
 // 3. Use this function to update the filters. 
 function updateFilters(filters) {
 
     // 4a. Save the element that was changed as a variable.
-    let elements = d3.select("#filters").property("value");
-    let filteredData = tableData;
-    //let date = d3.select("#datetime").property("value");
+    let item = d3.select(this);
+    //Look for result of listening select
+    d3.selectAll("input").on("change", updateFilters);
+    //Is this right? I'm not sure what it's doing?
 
     // 4b. Save the value that was changed as a variable.
-    let values  = d3.select(filters).property("value");
+    let values = item.property("value");
+    console.log(values);
     // 4c. Save the id of the filter that was changed as a variable.
+    let filterid = item.attr("id");
+    console.log(filterId);
 
   
     // 5. If a filter value was entered then add that filterId and value
     // to the filters list. Otherwise, clear that filter from the filters object.
- 
+    // See 11-1-3 Index.js
+    if (values) {
+      filters[filterId] = values;
+    }
+    else {
+      delete filters[filterId];
+    }
   
     // 6. Call function to apply all filters and rebuild the table
-    filterTable();
+    updateFilters(filterTable);
+
   
-  }
-  
+// This came from Galata. Save item
+// Object.entries(filter).forEach(([key,value]) => {
+//   filteredData = filteredData.filter(row => row[key] === value)
+// });
+
   // 7. Use this function to filter the table when data is entered.
   function filterTable() {
   
