@@ -20,7 +20,14 @@ The first script linked an image I'd saved to the web site. The second script li
 
 The JavaScript code I wrote for the filter form consisted of three functions.
 
-The first function, titled "buildTable" set up the table format, ensuring that there was a row for each UFO sighting, `data.forEach((dataRow) => {let row = tbody.append("tr");...` and a column for each piece of data about the sighting, `Object.values(dataRow).forEach((val) => { let cell = row.append("td");...`
+The first function, titled **buildTable** set up the table format, ensuring that there was a row for each UFO sighting, `data.forEach((dataRow) => {let row = tbody.append("tr");...` and a column for each piece of data about the sighting, `Object.values(dataRow).forEach((val) => { let cell = row.append("td");...`
+
+Next I wrote a function called **updateFilters()**, which logged the users' selections as variables and prepared them for filtering. Using d3, I had a powerful shortcut to getting the code to respond to the user interactions on the web site. using `select(this)` I had the web site ready for what would come next, which would be the filtering. At the end of this function, I returned **filterTable()** which would be defined later in the code.
+
+My filtering function was called **filterTable()**, which matched the input in `Object.entries` with the key-value pairs that matched the requests. I dispensed with a list of filtering all of the input boxes on the form by using an `Object.entries(filters).forEach(([key,value] => { filteredData = filteredData.filter(row => row[key === value)});....' This let me use each of the filter entries to further hone the search. Another d3 call at the end of my code put my two functions in concert to provide the user with the desired results. Finally I used `buildTable(tableData)` to rebuild a table containing only the desired results.
+
+This is what the filter looked like when I searched for Dana's home state of Oregon
+![oregon_results](https://github.com/JDittes/UFOs/blob/main/static/css/images/results_table.png)
 
 ## Summary: 
 In a summary statement, describe one drawback of this new design and two recommendations for further development.
