@@ -27,19 +27,21 @@ function buildTable(data) {
 var filters = {};
 
 // 3. Use this function to update the filters. 
-function updateFilters(filters) {
+function updateFilters() {
 
     // 4a. Save the element that was changed as a variable.
     let item = d3.select(this);
     //Look for result of listening select
-    d3.selectAll("input").on("change", updateFilters);
-    //Is this right? I'm not sure what it's doing?
+    Object.entries(filter).forEach(([key,value]) => {
+      filteredData = filteredData.filter(row => row[key] === value)  
+    // d3.selectAll("input").on("change", updateFilters);
+    //3/5 selects all boxes labeled input. On a change to the box, it runs the function
 
     // 4b. Save the value that was changed as a variable.
     let values = item.property("value");
     console.log(values);
     // 4c. Save the id of the filter that was changed as a variable.
-    let filterid = item.attr("id");
+    let filterId = item.attr("id");
     console.log(filterId);
 
   
@@ -54,13 +56,7 @@ function updateFilters(filters) {
     }
   
     // 6. Call function to apply all filters and rebuild the table
-    updateFilters(filterTable);
-
-  
-// This came from Galata. Save item
-// Object.entries(filter).forEach(([key,value]) => {
-//   filteredData = filteredData.filter(row => row[key] === value)
-// });
+    updateFilters();
 
   // 7. Use this function to filter the table when data is entered.
   function filterTable() {
@@ -91,7 +87,7 @@ function updateFilters(filters) {
   };
   
   // 2. Attach an event to listen for changes to each filter
-  d3.selectAll("#filter-btn").on("click", handleClick);
+  d3.selectAll("#filter-btn").on("click", filterTable);
   
   // Build the table when the page loads
   buildTable(tableData);
