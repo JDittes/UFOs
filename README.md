@@ -9,5 +9,18 @@ Dana has brought with her a JSON file of UFO sightings. I will use that as a dat
 Dana had already written some copy for the home page. I separated the page into two columns: a sidebar that was 4 columns wide, and a wider column for content that was 8 columns wide. I put Dana's title in the side column, then put her copy in the wider column. I gave everything a cool "dark mode" look, using the HTML class called "bg=dark." 
 ![site copy](https://github.com/JDittes/UFOs/blob/main/static/css/images/page_copy.png)
 
+Next I set up a filter for Dana using JavaScript. I instructed my index HTML file to use the JavaScript file by adding the following code: 
+```
+* <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+* <script src="static/js/data.js"></script>
+* <script src="static/js/app.js"></script>
+```
+The first script linked an image I'd saved to the web site. The second script linked Dana's data file to the site, which users have for their searches. The final script linked to a file called "app.js" that I had written to perform the functions of taking in users' searches and returning filtered results. Below is the form I placed on Dana's web site to help users with their searches.
+![Search form](https://github.com/JDittes/UFOs/blob/main/static/css/images/filter.png)
+
+The JavaScript code I wrote for the filter form consisted of three functions.
+
+The first function, titled "buildTable" set up the table format, ensuring that there was a row for each UFO sighting, `data.forEach((dataRow) => {let row = tbody.append("tr");...` and a column for each piece of data about the sighting, `Object.values(dataRow).forEach((val) => { let cell = row.append("td");...`
+
 ## Summary: 
 In a summary statement, describe one drawback of this new design and two recommendations for further development.
